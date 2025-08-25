@@ -17,7 +17,7 @@ const app = express();
 const server = http.createServer(app);
 
 // Setup Socket.IO with proper CORS
-const ENV = process.env.NODE_ENV == "development" ? process.env.LOCAL_URL  : process.env.ONRENDER_URL
+const ENV = process.env.NODE_ENV === "development" ? process.env.LOCAL_URL  : process.env.ONRENDER_URL
 console.log(ENV);
 const io = new Server(server, {
   cors: {
