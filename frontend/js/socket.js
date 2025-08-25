@@ -1,7 +1,12 @@
 import { io } from "https://cdn.socket.io/4.8.1/socket.io.esm.min.js";
+// import dotenv from "dotenv";
+// dotenv.config();
 
 // Connect to server
-const socket = io("http://localhost:7777");
+
+
+const socket = io("http://localhost:7777" || "https://zedsphere-chat-app.onrender.com" );
+
 
 export default socket;
 
