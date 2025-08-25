@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZedSphere Chat</title>
+  <link rel="stylesheet" href="css/chat.css">
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+
+<body>
+  <div class="chat-wrapper">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>ZedSphere</h2>
+
+      <!-- Search -->
+      <div class="chat-search">
+        <input type="text" id="search-user" placeholder="Search username..." />
+        <button id="search-btn">🔍</button>
+      </div>
+
+      <!-- Direct Messages -->
+      <h4>Direct Messages</h4>
+      <ul id="dm-list"></ul>
+
+      <!-- Sidebar Actions -->
+      <div class="sidebar-actions">
+        <button id="logout-btn" class="logout-btn">Logout</button>
+      </div>
+    </aside>
+
+    <!-- Main Chat Area -->
+    <main class="chat-main">
+      <header class="chat-header">
+        <h3 id="chat-title">Select a chat</h3>
+      </header>
+      <!-- 🔄 Spinner Overlay -->
+      <div id="chat-spinner" class="spinner-overlay" style="display: none;">
+        <div class="spinner"></div>
+      </div>
+
+      <div class="chat-messages" id="chat-messages"></div>
+
+      <form id="message-form">
+        <input type="text" id="message-input" placeholder="Type a message..." autocomplete="off" />
+        <button type="submit">Send</button>
+      </form>
+    </main>
+  </div>
+
+  <script type="module" src="/js/chat.js"></script>
+
+</body>
+
+</html>

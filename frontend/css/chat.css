@@ -1,0 +1,413 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #f5f5f5;
+}
+
+.chat-wrapper {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background: #2c3e50;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  box-sizing: border-box;
+}
+.sidebar h4 {
+  margin-top: 1rem;
+  font-size: 1rem;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 4px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 1rem;
+}
+
+.sidebar ul li {
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.sidebar ul li:hover {
+  background-color: #9b1616;
+}
+
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logout-btn {
+  background: #e74c3c;
+  border: none;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.chat-search,
+.group-section {
+  margin-top: 15px;
+}
+
+.chat-search input {
+  width: 70%;
+  padding: 5px;
+}
+
+.chat-search button,
+.group-section button {
+  padding: 5px 10px;
+  margin-left: 5px;
+  border: none;
+  border-radius: 4px;
+  background: #1abc9c;
+  color: white;
+  cursor: pointer;
+}
+
+#contact-list {
+  margin-top: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+#contact-list li {
+  padding: 8px 10px;
+  border-bottom: 1px solid #34495e;
+  cursor: pointer;
+}
+
+#contact-list li:hover {
+  background: #34495e;
+}
+
+.chat-main {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-header {
+  background: #3498db;
+  padding: 10px;
+  color: white;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  background: white;
+}
+.chat-members {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin-top: 4px;
+}
+
+#message-form {
+  display: flex;
+  padding: 10px;
+  background: #ecf0f1;
+}
+
+#message-input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#message-form button {
+  margin-left: 10px;
+  padding: 8px 12px;
+  background: #2980b9;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+/* Modal styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+}
+
+.modal-content input {
+  display: block;
+  margin: 10px 0;
+  width: 100%;
+  padding: 8px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-buttons button {
+  margin-left: 10px;
+  padding: 6px 12px;
+  border: none;
+  background: #27ae60;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 300px;
+}
+
+.hidden {
+  display: none;
+}
+
+.timestamp {
+  font-size: 0.8rem;
+  color: #666;
+  margin-left: 10px;
+}
+.spinner-overlay {
+  position: absolute;
+  top: 50px;   /* below header */
+  left: 0;
+  right: 0;
+  bottom: 60px; /* above input form */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.7); /* ✅ only over chat area */
+  z-index: 1000;
+  border-radius: 12px; /* optional nice rounded overlay */
+}
+
+.spinner {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #4cafef;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  background: #f0f2f5; /* WhatsApp/Messenger light background */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Message bubble */
+.message {
+  max-width: 70%;
+  padding: 10px 14px;
+  border-radius: 18px;
+  font-size: 14px;
+  line-height: 1.4;
+  position: relative;
+  display: inline-block;
+  word-wrap: break-word;
+}
+
+/* My messages (right side) */
+.message.sent {
+  align-self: flex-end;
+  background: #0084ff;
+  color: white;
+  border-bottom-right-radius: 5px;
+}
+
+/* Other user messages (left side) */
+.message.received {
+  align-self: flex-start;
+  background: white;
+  color: #333;
+  border: 1px solid #ddd;
+  border-bottom-left-radius: 5px;
+}
+
+/* Timestamp */
+.message-time {
+  display: block;
+  font-size: 11px;
+  color: #777;
+  margin-top: 4px;
+  text-align: right;
+}
+.chat-item.unread {
+  font-weight: bold;
+  color: #007bff; /* highlight color */
+  position: relative;
+}
+
+.unread-badge {
+  background: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  margin-left: 8px;
+  font-size: 12px;
+}
+
+
+
+
+/* Responsive design for mobile and tablets */
+@media (max-width: 768px) {
+  .chat-wrapper {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  .sidebar h4 {
+    width: 100%;
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+  }
+
+  .sidebar ul {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .sidebar ul li {
+    width: 48%;
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+  }
+
+  .chat-main {
+    position: relative; /* ✅ allow spinner to stay inside chat area only */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  }
+
+  .chat-header {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .chat-messages {
+    max-height: 50vh;
+    padding: 8px;
+  }
+
+  #message-form {
+    flex-direction: column;
+  }
+
+  #message-input {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  #message-form button {
+    width: 100%;
+  }
+
+  .modal-content {
+    width: 90%;
+    max-width: 320px;
+  }
+
+  .modal-content input {
+    font-size: 1rem;
+  }
+
+  .logout-btn,
+  .chat-search button,
+  .group-section button {
+    font-size: 0.85rem;
+    padding: 5px 8px;
+  }
+
+  .chat-search input {
+    width: 100%;
+    margin-bottom: 6px;
+  }
+
+  .chat-search,
+  .group-section {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .timestamp {
+    display: block;
+    font-size: 0.7rem;
+    margin-top: 4px;
+    margin-left: 0;
+    text-align: right;
+  }
+}
