@@ -5,7 +5,7 @@ import { io } from "https://cdn.socket.io/4.8.1/socket.io.esm.min.js";
 // Connect to server
 
 
-const socket = io("http://localhost:7777" || "https://zedsphere-chat-app.onrender.com" );
+const socket = io("https://zedsphere-chat-app.onrender.com" || "http://localhost:7777" );
 
 
 export default socket;
